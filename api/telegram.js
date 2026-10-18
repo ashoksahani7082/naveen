@@ -26,7 +26,7 @@ async function redisCommand(command) {
 
 async function sendMetaSubscribe(attribution, eventTime, eventId) {
   const accessToken = process.env.META_CAPI_ACCESS_TOKEN;
-  const pixelId = process.env.META_PIXEL_ID || "1572406807434248";
+  const pixelId = process.env.META_PIXEL_ID || "1364743725738962";
   const apiVersion = process.env.META_GRAPH_API_VERSION || "v24.0";
   const testEventCode = process.env.META_TEST_EVENT_CODE;
 
