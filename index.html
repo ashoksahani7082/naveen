@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLAYBOY - Telegram</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1572406807434248');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1572406807434248&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #050505;
+            margin: 0;
+            overflow: hidden; /* Hide scrollbars for the animated background */
+        }
+
+        /* Animated glowing background orbs */
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.45;
+            z-index: 0;
+            animation: float 12s infinite ease-in-out alternate;
+        }
+        
+        .orb-1 {
+            width: 450px;
+            height: 450px;
+            background: #D4AF37; /* Telegram Blue */
+            top: -100px;
+            left: -150px;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: #8B1E2D; /* Deeper Blue */
+            bottom: -200px;
+            right: -100px;
+            animation-delay: -6s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(60px, 80px) scale(1.15); }
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: linear-gradient(145deg, rgba(30, 24, 14, 0.72), rgba(10, 10, 10, 0.94));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.22);
+            box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.6);
+            z-index: 10;
+        }
+
+        /* Rotating glowing ring for the logo */
+        .rotating-ring {
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, transparent 0%, transparent 38%, #D4AF37 72%, #8B1E2D 100%);
+            animation: rotate 2.5s linear infinite;
+            z-index: 1;
+        }
+        
+        .rotating-ring::after {
+            content: '';
+            position: absolute;
+            inset: 3px; /* Inner cut */
+            background: #101010; /* Match logo background */
+            border-radius: 50%;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Pulse animation for the main CTA button */
+        @keyframes pulse-shadow {
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6); }
+            70% { box-shadow: 0 0 0 25px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+        
+        .btn-pulse {
+            animation: pulse-shadow 2.5s infinite;
+        }
+        
+        /* Subtle text shadow for main heading */
+        .glow-text {
+            text-shadow: 0 2px 20px rgba(212, 175, 55, 0.4);
+        }
+        
+        .neon-text {
+            color: #D4AF37;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.8), 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center relative px-4">
+
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <main class="w-full max-w-[420px] glass-card rounded-[2rem] p-8 relative flex flex-col items-center">
+        
+        <!-- Animated Logo Section -->
+        <div class="relative w-32 h-32 mb-6 mt-2 flex items-center justify-center">
+            <div class="rotating-ring"></div>
+            <!-- Inner Logo container placed above the ring via z-index -->
+            <div class="relative z-10 w-[116px] h-[116px] bg-[#101010] rounded-full flex items-center justify-center shadow-[0_0_25px_rgba(212,175,55,0.3)]">
+                <i class="fa-brands fa-telegram text-[4.5rem] text-[#D4AF37]" style="margin-right: 4px; margin-top: 2px;"></i>
+            </div>
+        </div>
+
+        <!-- Heading -->
+        <h1 class="text-[2rem] font-extrabold text-white mb-2 text-center glow-text tracking-wide leading-tight">
+            PLAYBOY
+        </h1>
+        
+        <!-- Active Players -->
+        <p class="text-gray-300 font-medium text-sm mb-6 flex items-center gap-2">
+            <span class="text-lg">🏆</span> 50,000+ Active Players
+        </p>
+
+        <!-- Features list -->
+        <div class="flex items-center justify-center gap-5 w-full mb-8 text-sm font-semibold text-gray-200 bg-white/5 py-3 px-4 rounded-xl border border-white/10 shadow-inner">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-shield-check text-[#D4AF37]"></i>
+                <span>100% Trusted</span>
+            </div>
+            <div class="w-[1px] h-5 bg-white/20"></div>
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-bolt text-[#D4AF37]"></i>
+                <span>Instant Reply</span>
+            </div>
+        </div>
+
+        <!-- Timer Box -->
+        <div class="w-full bg-black/50 border border-[#D4AF37]/40 rounded-2xl p-4 flex flex-col sm:flex-row justify-center items-center gap-3 mb-8 shadow-inner relative overflow-hidden">
+            <div class="absolute inset-0 bg-[#D4AF37]/10 blur-2xl"></div>
+            <span class="text-gray-300 text-xs font-bold tracking-[0.2em] uppercase relative z-10">Offer Ends In:</span>
+            <span id="timer" class="neon-text font-extrabold text-2xl tabular-nums tracking-wider relative z-10">10:00</span>
+        </div>
+
+        <!-- CTA Button -->
+        <a href="https://t.me/+FTW74SuhXVIzMTZl" target="_blank" rel="noopener noreferrer" 
+           class="w-full bg-[#D4AF37] hover:bg-[#B8941F] text-white font-extrabold py-4 px-6 rounded-2xl flex items-center justify-center gap-3 transition-all duration-300 transform hover:-translate-y-1 btn-pulse shadow-[0_0_20px_rgba(212,175,55,0.5)] border border-[#F0D778]/30">
+            <i class="fa-brands fa-telegram-plane text-2xl"></i>
+            <span class="text-[15px] sm:text-base tracking-wider uppercase">JOIN PLAYBOY</span>
+        </a>
+        
+        <!-- Secure note -->
+        <p class="text-[10px] text-gray-400 mt-6 uppercase tracking-widest font-medium opacity-60">
+            <i class="fa-solid fa-lock mr-1.5 text-[9px]"></i> 100% Secure & Verified
+        </p>
+
+    </main>
+
+    <script>
+        // Set timer for exactly 10 minutes (600 seconds)
+        let totalSeconds = 600;
+        const timerDisplay = document.getElementById('timer');
+
+        function updateTimer() {
+            if (totalSeconds <= 0) {
+                timerDisplay.innerText = "00:00";
+                return;
+            }
+
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+
+            const displayMinutes = minutes < 10 ? '0' + minutes : minutes;
+            const displaySeconds = seconds < 10 ? '0' + seconds : seconds;
+
+            timerDisplay.innerText = `${displayMinutes}:${displaySeconds}`;
+            totalSeconds--;
+        }
+
+        updateTimer();
+        setInterval(updateTimer, 1000);
+
+        // Create a unique Telegram join-request link for each click.
+        // UTM parameters are stored server-side and matched when Telegram
+        // sends the join request webhook.
+        const telegramButton = document.querySelector('a[href^="https://t.me/"]');
+        const fallbackTelegramLink = telegramButton?.href;
+
+        telegramButton?.addEventListener('click', async (event) => {
+            event.preventDefault();
+
+            const originalText = telegramButton.innerHTML;
+            telegramButton.style.pointerEvents = 'none';
+            telegramButton.innerHTML = '<i class="fa-brands fa-telegram-plane text-2xl"></i><span class="text-[15px] sm:text-base tracking-wider uppercase">Preparing...</span>';
+
+            try {
+                const params = new URLSearchParams(window.location.search);
+                let referrerHost = null;
+
+                try {
+                    if (document.referrer) {
+                        referrerHost = new URL(document.referrer).hostname;
+                    }
+                } catch {}
+
+                const response = await fetch('/api/create-invite', {
+                    method: 'POST',
+                    headers: { 'content-type': 'application/json' },
+                    body: JSON.stringify({
+                        source: params.get('utm_source'),
+                        campaign: params.get('utm_campaign'),
+                        medium: params.get('utm_medium'),
+                        content: params.get('utm_content'),
+                        term: params.get('utm_term'),
+                        landing_referrer: referrerHost,
+                        landing_url: window.location.href,
+                        fbp: document.cookie.match(/(?:^|; )_fbp=([^;]+)/)?.[1] || null,
+                        fbc: document.cookie.match(/(?:^|; )_fbc=([^;]+)/)?.[1] || null,
+                        user_agent: navigator.userAgent
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok || !data.ok || !data.invite_link) {
+                    throw new Error(data.error || 'Invite creation failed');
+                }
+
+                window.location.href = data.invite_link;
+            } catch (error) {
+                console.error('Attribution link error:', error);
+                // If the tracking endpoint is temporarily unavailable,
+                // keep the original Telegram link working.
+                if (fallbackTelegramLink) {
+                    window.location.href = fallbackTelegramLink;
+                } else {
+                    telegramButton.innerHTML = originalText;
+                    telegramButton.style.pointerEvents = '';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
