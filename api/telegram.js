@@ -24,7 +24,7 @@ async function redisCommand(command) {
   return data.result;
 }
 
-async function sendMetaSubscribe(attribution, eventTime, eventId) {
+async function sendMetaSubscribe(attribution, eventTime, eventId, telegramUserId) {
   const accessToken = process.env.META_CAPI_ACCESS_TOKEN;
   const pixelId = process.env.META_PIXEL_ID || "1364743725738962";
   const apiVersion = process.env.META_GRAPH_API_VERSION || "v24.0";
@@ -38,23 +38,24 @@ async function sendMetaSubscribe(attribution, eventTime, eventId) {
   if (attribution?.fbp) userData.fbp = attribution.fbp;
   if (attribution?.fbc) userData.fbc = attribution.fbc;
 
-  // A pseudonymous click identifier can be used as an external ID after hashing.
-  if (attribution?.click_id) {
+  // Prefer the landing click ID for matching; otherwise hash the Telegram user ID.
+  const externalId = attribution?.click_id || (telegramUserId ? String(telegramUserId) : null);
+  if (externalId) {
     const digest = await crypto.subtle.digest(
       "SHA-256",
-      new TextEncoder().encode(attribution.click_id)
+      new TextEncoder().encode(externalId)
     );
     userData.external_id = Array.from(new Uint8Array(digest))
       .map((b) => b.toString(16).padStart(2, "0"))
       .join("");
   }
 
+  // A Telegram join request is not a browser action; report it as an offline/other source.
   const event = {
     event_name: "Subscribe",
     event_time: eventTime,
     event_id: eventId,
-    action_source: "website",
-    event_source_url: attribution?.landing_url || "https://naveen.vercel.app/",
+    action_source: "other",
     user_data: userData
   };
 
@@ -132,21 +133,25 @@ export default async function handler(req, res) {
         60 * 60 * 24 * 90
       ]);
 
-      if (attribution?.click_id) {
-        const eventId = `subscriber_${attribution.click_id}`;
-        try {
-          await sendMetaSubscribe(
-            attribution,
-            request.date || Math.floor(Date.now() / 1000),
-            eventId
-          );
-          console.log("Meta CAPI Subscribe sent", {
-            event_id: eventId,
-            click_id: attribution.click_id
-          });
-        } catch (metaError) {
-          console.error("Meta CAPI Subscribe failed:", metaError.message);
-        }
+      // Send Subscribe for every join request, even if it did not come through a tracked invite.
+      const eventTime = request.date || Math.floor(Date.now() / 1000);
+      const eventId = attribution?.click_id
+        ? `subscriber_${attribution.click_id}`
+        : `subscriber_${request.from?.id || "unknown"}_${eventTime}`;
+      try {
+        await sendMetaSubscribe(
+          attribution,
+          eventTime,
+          eventId,
+          request.from?.id
+        );
+        console.log("Meta CAPI Subscribe sent", {
+          event_id: eventId,
+          click_id: attribution?.click_id || null,
+          attributed: Boolean(attribution?.click_id)
+        });
+      } catch (metaError) {
+        console.error("Meta CAPI Subscribe failed:", metaError.message);
       }
 
       console.log("Telegram join request saved", {
